@@ -34,14 +34,12 @@ class Queue {
     }
 
   dequeue() {
-    if(this.rear > 0) {
       this.data.pop()
-    }
-    return this.data.pop()
+      return this.data.pop()
 
   }
 
   peek() {
     return this.data[this.data.length - 1]
   }
-}
+};
