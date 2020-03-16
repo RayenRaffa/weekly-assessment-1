@@ -24,5 +24,22 @@ class Stack {
 ////////////////////////////////////////////////////////////
 
 class Queue {
+  constructor() {
+    this.data = [];
+    
+  }
 
-}
+  enqueue(record) {
+    this.data.unshift(record);
+    }
+
+  dequeue() {
+      this.data.pop()
+      return this.data.pop()
+
+  }
+
+  peek() {
+    return this.data[this.data.length - 1]
+  }
+};
