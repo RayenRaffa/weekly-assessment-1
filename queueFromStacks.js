@@ -24,5 +24,31 @@ class Stack {
 ////////////////////////////////////////////////////////////
 
 class Queue {
+  constructor () {
+    this.data=[]
+    this.tail=0;
+    this.head=0;
+    this.size=0
+  }
+
+  enqueue (value) {
+    this.tail=value
+    this.size++
+    if (this.size>0) {
+      var x=this.tail
+      this.
+    }
+    
+  }
+
+  dequeue (value) {
+    if (this.size >0) {
+      
+
+    }
+
+  }
+
+
 
 }

@@ -8,15 +8,19 @@ var HashTable = function() {
 
 
 HashTable.prototype.insert = function(key, value) {
+  var index =hashTable(key,this.limit)
+  this.storage[index]=set(key,value)
 };
 
 
 HashTable.prototype.remove = function(key) {
+
 };
 
 
 
 HashTable.prototype.retrieve = function(key) {
+
 };
 
 
