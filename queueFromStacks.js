@@ -28,17 +28,11 @@ class Queue {
     let s = new Stack()
     this.data = s;
   }
-  removeHead() {
-    this.data.data.pop(0,1);
-  }
-  addTail(value) {
-    this.data.data.push(value);
-  }
-  removeTail() {
-    this.data.data.splice(this.data.length-2,1);
-  }
-  addHead(value) {
+  enqueue(value) {
     this.data.data.unshift(value);
+  }
+  dequeue() {
+    this.data.data.pop();
   }
   getSize() {
     return this.data.data.length;
