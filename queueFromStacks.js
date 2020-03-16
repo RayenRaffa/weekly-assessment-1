@@ -24,5 +24,26 @@ class Stack {
 ////////////////////////////////////////////////////////////
 
 class Queue {
+  constructor() {
+    this.storage=[];
+    size=0;
+  }
+  queue (value) {
+    this.storage.unshift(value);
+    size++;
+  }
+  enqueue () {
+    size--;
+    return this.storage.shift()
+    
+  }
+  remove (target) {
+    if(this.storage[size] === target) {
+      delete this.storage[size];
+      size--;
+      return this.storage;
+    }
+    return 'target not exist'
+  }
 
 }
