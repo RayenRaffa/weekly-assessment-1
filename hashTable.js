@@ -8,15 +8,22 @@ var HashTable = function() {
 
 
 HashTable.prototype.insert = function(key, value) {
+  if(this._count <= this._limit) {
+      this._storage.push[key]=value;
+      this._count++
+  }  
+  return 'This storage reach the limit of 8'    
 };
 
 
 HashTable.prototype.remove = function(key) {
+  delete this._storage[key];
 };
 
 
 
 HashTable.prototype.retrieve = function(key) {
+  return this._sotrage[key];
 };
 
 
@@ -32,6 +39,7 @@ HashTable.prototype.hashFunc = function(str, max) {
 
 
 HashTable.prototype.resize = function(newLimit) {
+  this._limit=newLimit;
 };
 
 
