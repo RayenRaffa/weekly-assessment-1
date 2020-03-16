@@ -24,5 +24,17 @@ class Stack {
 ////////////////////////////////////////////////////////////
 
 class Queue {
-
+  constructor() {
+    let s = new Stack()
+    this.data = s;
+  }
+  enqueue(value) {
+    this.data.data.unshift(value);
+  }
+  dequeue() {
+    this.data.data.pop();
+  }
+  getSize() {
+    return this.data.data.length;
+  }
 }
