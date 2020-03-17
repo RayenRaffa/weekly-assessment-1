@@ -37,11 +37,15 @@ class Queue {
     while(this.data.peek()){
       spareData.push(this.data.pop());
     }
-    let element = spareData.pop();
+    var element = spareData.pop();
     while(spareData.peek()) {
       this.data.push(spareData.pop());
     }
     return element;
+  }
+
+  size() {
+    return this.data.data.length;
   }
 
 }
