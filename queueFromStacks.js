@@ -24,5 +24,24 @@ class Stack {
 ////////////////////////////////////////////////////////////
 
 class Queue {
+  constructor() {
+    this.data = new Stack();
+  }
+
+  enqueue(value) {
+    this.data.push(value);
+  }
+
+  dequeue() {
+    var spareData = new Stack();
+    while(this.data.peek()){
+      spareData.push(this.data.pop());
+    }
+    let element = spareData.pop();
+    while(spareData.peek()) {
+      this.data.push(spareData.pop());
+    }
+    return element;
+  }
 
 }
