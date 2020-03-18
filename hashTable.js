@@ -11,8 +11,20 @@ HashTable.prototype.insert = function(key, value) {
   var index  = this.hashFunc(key, this._limit);
   var tuple  = [key, value];
   var bucket = this._storage[index];
+  var keyAlreadyExists = false;
   if (bucket) {
-    bucket.push(tuple);
+    for (var i=0; i<bucket.length; i++) {
+      if (bucket[i][0] === key) {
+        bucket[i][1]     = value;
+        keyAlreadyExists = true;
+        // element overridden, no need to increment _count
+        // decrement _count to negate line 32 'this._count++;'
+        this._count--;
+      }
+    }
+    if (!keyAlreadyExists){
+      bucket.push(tuple);
+    }
   } else {
     bucket = [tuple];
   }
@@ -27,18 +39,21 @@ HashTable.prototype.insert = function(key, value) {
 HashTable.prototype.remove = function(key) { 
   var index  = this.hashFunc(key, this._limit);
   var bucket = this._storage[index];
-  for (var i=0; i<bucket.length; i++) {
-    if (bucket[i][0] === key) {
-      value = bucket[i][1];
-      bucket.splice(i,1);
-      this._storage[index] = bucket;
-      this._count--;
+  var removedValue = undefined;
+  if(bucket) {
+    for (var i=0; i<bucket.length; i++) {
+      if (bucket[i][0] === key) {
+        removedValue = bucket[i][1];
+        bucket.splice(i,1);
+        this._storage[index] = bucket;
+        this._count--;
+      }
+    }
+    if ((this._count/this._limit < 0.25) && (this._limit > 2)) {
+      this.resize(Math.floor(this._limit/2));
     }
   }
-  if ((this._count/this._limit < 0.25) && (this._limit > 2)) {
-    this.resize(Math.floor(this._limit/2));
-  }
-  return value;
+  return removedValue;
 };
 
 
@@ -89,4 +104,3 @@ HashTable.prototype.resize = function(newLimit) {
 HashTable.prototype.retrieveAll = function() {
   return this._storage;
 };
-
